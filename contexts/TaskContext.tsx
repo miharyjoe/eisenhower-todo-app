@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { v4 as uuidv4 } from 'react-native-uuid';
+import uuid from 'react-native-uuid';
 
 import { Task, TaskFormData, TaskContextType, Priority, TaskStatus } from '@/types';
 import { STORAGE_KEYS } from '@/constants/EisenhowerMatrix';
@@ -65,7 +65,7 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
   const addTask = async (taskData: TaskFormData) => {
     try {
       const newTask: Task = {
-        id: uuidv4() as string,
+        id: uuid.v4() as string,
         title: taskData.title.trim(),
         description: taskData.description?.trim(),
         priority: taskData.priority,
