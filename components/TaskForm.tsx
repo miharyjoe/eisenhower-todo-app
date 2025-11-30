@@ -15,6 +15,8 @@ import { Task, TaskFormData, Priority } from '@/types';
 import { QUADRANT_CONFIG } from '@/constants/EisenhowerMatrix';
 import { useColorScheme } from '@/components/useColorScheme';
 import Colors from '@/constants/Colors';
+import { useTranslation } from 'react-i18next';
+import { getDateLocale } from '@/lib/locale';
 
 interface TaskFormProps {
   task?: Task | null;
@@ -31,6 +33,7 @@ export const TaskForm: React.FC<TaskFormProps> = ({
 }) => {
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme ?? 'light'];
+  const { t, i18n } = useTranslation();
 
   const [title, setTitle] = useState(task?.title || '');
   const [description, setDescription] = useState(task?.description || '');
@@ -66,7 +69,7 @@ export const TaskForm: React.FC<TaskFormProps> = ({
   };
 
   const formatDate = (date: Date) => {
-    return date.toLocaleDateString('en-US', {
+    return date.toLocaleDateString(getDateLocale(i18n.language), {
       weekday: 'short',
       month: 'short',
       day: 'numeric',
@@ -80,7 +83,7 @@ export const TaskForm: React.FC<TaskFormProps> = ({
         {/* Header */}
         <View style={styles.header}>
           <Text style={[styles.headerTitle, { color: colors.text }]}>
-            {isEditing ? 'Edit Task' : 'New Task'}
+            {isEditing ? t('taskForm.editTitle') : t('taskForm.newTitle')}
           </Text>
           <TouchableOpacity onPress={onCancel} style={styles.closeButton}>
             <FontAwesome name="times" size={20} color={colors.text} />
@@ -89,7 +92,7 @@ export const TaskForm: React.FC<TaskFormProps> = ({
 
         {/* Title Input */}
         <View style={styles.section}>
-          <Text style={[styles.label, { color: colors.text }]}>Title *</Text>
+          <Text style={[styles.label, { color: colors.text }]}>{t('taskForm.fields.title')}</Text>
           <TextInput
             style={[
               styles.textInput,
@@ -101,7 +104,7 @@ export const TaskForm: React.FC<TaskFormProps> = ({
             ]}
             value={title}
             onChangeText={setTitle}
-            placeholder="What needs to be done?"
+            placeholder={t('taskForm.fields.titlePlaceholder')}
             placeholderTextColor={colors.text + '60'}
             multiline
             maxLength={200}
@@ -110,7 +113,7 @@ export const TaskForm: React.FC<TaskFormProps> = ({
 
         {/* Description Input */}
         <View style={styles.section}>
-          <Text style={[styles.label, { color: colors.text }]}>Description</Text>
+          <Text style={[styles.label, { color: colors.text }]}>{t('taskForm.fields.description')}</Text>
           <TextInput
             style={[
               styles.textInput,
@@ -123,7 +126,7 @@ export const TaskForm: React.FC<TaskFormProps> = ({
             ]}
             value={description}
             onChangeText={setDescription}
-            placeholder="Add more details (optional)"
+            placeholder={t('taskForm.fields.descriptionPlaceholder')}
             placeholderTextColor={colors.text + '60'}
             multiline
             textAlignVertical="top"
@@ -133,7 +136,7 @@ export const TaskForm: React.FC<TaskFormProps> = ({
 
         {/* Priority Selection */}
         <View style={styles.section}>
-          <Text style={[styles.label, { color: colors.text }]}>Priority *</Text>
+          <Text style={[styles.label, { color: colors.text }]}>{t('taskForm.fields.priority')}</Text>
           <View style={styles.priorityGrid}>
             {Object.values(Priority).map((priorityOption) => {
               const config = QUADRANT_CONFIG[priorityOption];
@@ -165,13 +168,13 @@ export const TaskForm: React.FC<TaskFormProps> = ({
                     styles.priorityTitle,
                     { color: isSelected ? config.color : colors.text }
                   ]}>
-                    {config.title}
+                    {t(`quadrants.${priorityOption}.title`)}
                   </Text>
                   <Text style={[
                     styles.priorityDescription,
                     { color: isSelected ? config.color : colors.text }
                   ]}>
-                    {config.description}
+                    {t(`quadrants.${priorityOption}.description`)}
                   </Text>
                 </TouchableOpacity>
               );
@@ -181,7 +184,7 @@ export const TaskForm: React.FC<TaskFormProps> = ({
 
         {/* Due Date */}
         <View style={styles.section}>
-          <Text style={[styles.label, { color: colors.text }]}>Due Date</Text>
+          <Text style={[styles.label, { color: colors.text }]}>{t('taskForm.fields.dueDate')}</Text>
           
           {dueDate ? (
             <View style={styles.dueDateContainer}>
@@ -205,7 +208,7 @@ export const TaskForm: React.FC<TaskFormProps> = ({
                 onPress={() => setShowDatePicker(true)}
               >
                 <Text style={[styles.changeDateText, { color: colors.text }]}>
-                  Change Date
+                  {t('taskForm.changeDate')}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -222,7 +225,7 @@ export const TaskForm: React.FC<TaskFormProps> = ({
             >
               <FontAwesome name="calendar-plus-o" size={16} color={colors.text} />
               <Text style={[styles.addDateText, { color: colors.text }]}>
-                Add Due Date
+                {t('taskForm.addDueDate')}
               </Text>
             </TouchableOpacity>
           )}
@@ -235,7 +238,7 @@ export const TaskForm: React.FC<TaskFormProps> = ({
             onPress={onCancel}
           >
             <Text style={[styles.cancelButtonText, { color: colors.text }]}>
-              Cancel
+              {t('taskForm.cancel')}
             </Text>
           </TouchableOpacity>
 
@@ -251,7 +254,7 @@ export const TaskForm: React.FC<TaskFormProps> = ({
             disabled={!isValid}
           >
             <Text style={styles.submitButtonText}>
-              {isEditing ? 'Update Task' : 'Create Task'}
+              {isEditing ? t('taskForm.update') : t('taskForm.create')}
             </Text>
           </TouchableOpacity>
         </View>
@@ -260,7 +263,7 @@ export const TaskForm: React.FC<TaskFormProps> = ({
       {/* Date Picker - TODO: Add DateTimePicker */}
       {showDatePicker && (
         <Text style={[styles.datePickerPlaceholder, { color: colors.text }]}>
-          Date picker will be added in next version
+          {t('taskForm.datePickerPlaceholder')}
         </Text>
       )}
     </ScrollView>

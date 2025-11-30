@@ -1,0 +1,81 @@
+{
+  "loading": "Chargement de vos tâches…",
+  "appTitle": "Matrice d'Eisenhower",
+  "appSubtitle": "Organisez les tâches par urgence et importance",
+  "tabs": {
+    "matrix": "Matrice",
+    "tasks": "Tâches"
+  },
+  "filters": {
+    "all": "Toutes",
+    "pending": "En cours",
+    "completed": "Terminées"
+  },
+  "quadrants": {
+    "urgent_important": {
+      "title": "À faire d'abord",
+      "description": "Urgent et important"
+    },
+    "not_urgent_important": {
+      "title": "Planifier",
+      "description": "Important, non urgent"
+    },
+    "urgent_not_important": {
+      "title": "Déléguer",
+      "description": "Urgent, non important"
+    },
+    "not_urgent_not_important": {
+      "title": "Éliminer",
+      "description": "Ni urgent ni important"
+    }
+  },
+  "taskList": {
+    "title": "Liste des tâches",
+    "subtitle": "{{total}} tâches • {{completed}} terminées",
+    "emptyAllTitle": "Aucune tâche pour le moment",
+    "emptyFilterTitle": "Aucune tâche {{filter}}",
+    "emptySubtitle": "Appuyez sur + pour créer votre première tâche"
+  },
+  "quadrantCard": {
+    "completed": "{{completed}}/{{total}} terminées",
+    "emptyTitle": "Aucune tâche",
+    "emptySubtitle": "Appuyez sur + pour ajouter une tâche"
+  },
+  "taskForm": {
+    "newTitle": "Nouvelle tâche",
+    "editTitle": "Modifier la tâche",
+    "fields": {
+      "title": "Titre *",
+      "description": "Description",
+      "titlePlaceholder": "Que faut-il faire ?",
+      "descriptionPlaceholder": "Ajoutez des détails (facultatif)",
+      "priority": "Priorité *",
+      "dueDate": "Échéance"
+    },
+    "changeDate": "Modifier la date",
+    "addDueDate": "Ajouter une échéance",
+    "cancel": "Annuler",
+    "create": "Créer la tâche",
+    "update": "Mettre à jour",
+    "datePickerPlaceholder": "Le sélecteur de date sera ajouté dans la prochaine version"
+  },
+  "taskCard": {
+    "deleteConfirmTitle": "Supprimer la tâche",
+    "deleteConfirmMessage": "Voulez-vous vraiment supprimer cette tâche ?",
+    "cancel": "Annuler",
+    "delete": "Supprimer"
+  },
+  "languageNames": {
+    "en": "English",
+    "fr": "Français",
+    "es": "Español",
+    "zh": "中文"
+  },
+  "devScreen": {
+    "openCode": "Ouvrez le code de cet écran :",
+    "saveHint": "Modifiez un texte, enregistrez, l'application se mettra à jour automatiquement.",
+    "helpText": "Touchez ici si l'application ne se met pas à jour après vos changements"
+  }
+}
+
+

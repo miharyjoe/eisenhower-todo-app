@@ -15,12 +15,14 @@ import { Priority, Task, TaskFormData } from '@/types';
 import { PRIORITY_ORDER } from '@/constants/EisenhowerMatrix';
 import { useColorScheme } from '@/components/useColorScheme';
 import Colors from '@/constants/Colors';
+import { useTranslation } from 'react-i18next';
 
 const { height } = Dimensions.get('window');
 
 export default function EisenhowerMatrixScreen() {
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme ?? 'light'];
+  const { t } = useTranslation();
   
   const { getTasksByQuadrant, addTask, updateTask, loading } = useTaskContext();
   
@@ -68,7 +70,7 @@ export default function EisenhowerMatrixScreen() {
     return (
       <View style={[styles.loadingContainer, { backgroundColor: colors.background }]}>
         <Text style={[styles.loadingText, { color: colors.text }]}>
-          Loading your tasks...
+          {t('loading')}
         </Text>
       </View>
     );
@@ -79,10 +81,10 @@ export default function EisenhowerMatrixScreen() {
       {/* Header */}
       <View style={styles.header}>
         <Text style={[styles.title, { color: colors.text }]}>
-          Eisenhower Matrix
+          {t('appTitle')}
         </Text>
         <Text style={[styles.subtitle, { color: colors.text }]}>
-          Organize tasks by urgency and importance
+          {t('appSubtitle')}
         </Text>
       </View>
 

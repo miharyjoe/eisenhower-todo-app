@@ -1,0 +1,81 @@
+{
+  "loading": "正在加载任务…",
+  "appTitle": "艾森豪威尔矩阵",
+  "appSubtitle": "按紧急性和重要性组织任务",
+  "tabs": {
+    "matrix": "矩阵",
+    "tasks": "任务"
+  },
+  "filters": {
+    "all": "全部",
+    "pending": "进行中",
+    "completed": "已完成"
+  },
+  "quadrants": {
+    "urgent_important": {
+      "title": "优先处理",
+      "description": "紧急且重要"
+    },
+    "not_urgent_important": {
+      "title": "安排计划",
+      "description": "重要但不紧急"
+    },
+    "urgent_not_important": {
+      "title": "委派处理",
+      "description": "紧急但不重要"
+    },
+    "not_urgent_not_important": {
+      "title": "去除",
+      "description": "不紧急也不重要"
+    }
+  },
+  "taskList": {
+    "title": "任务列表",
+    "subtitle": "共 {{total}} 个任务 • 已完成 {{completed}} 个",
+    "emptyAllTitle": "还没有任务",
+    "emptyFilterTitle": "没有{{filter}}任务",
+    "emptySubtitle": "点击 + 创建你的第一个任务"
+  },
+  "quadrantCard": {
+    "completed": "{{completed}}/{{total}} 已完成",
+    "emptyTitle": "暂无任务",
+    "emptySubtitle": "点击 + 添加任务"
+  },
+  "taskForm": {
+    "newTitle": "新建任务",
+    "editTitle": "编辑任务",
+    "fields": {
+      "title": "标题 *",
+      "description": "描述",
+      "titlePlaceholder": "需要做什么？",
+      "descriptionPlaceholder": "添加更多细节（可选）",
+      "priority": "优先级 *",
+      "dueDate": "截止日期"
+    },
+    "changeDate": "更改日期",
+    "addDueDate": "添加截止日期",
+    "cancel": "取消",
+    "create": "创建任务",
+    "update": "更新任务",
+    "datePickerPlaceholder": "日期选择器将在下个版本添加"
+  },
+  "taskCard": {
+    "deleteConfirmTitle": "删除任务",
+    "deleteConfirmMessage": "确定要删除此任务吗？",
+    "cancel": "取消",
+    "delete": "删除"
+  },
+  "languageNames": {
+    "en": "English",
+    "fr": "Français",
+    "es": "Español",
+    "zh": "中文"
+  },
+  "devScreen": {
+    "openCode": "打开此页面的代码：",
+    "saveHint": "更改任意文本、保存，应用会自动更新。",
+    "helpText": "如果更改后应用未自动更新，请点击这里"
+  }
+}
+
+

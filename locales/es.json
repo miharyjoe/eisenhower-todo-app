@@ -1,0 +1,81 @@
+{
+  "loading": "Cargando tus tareas…",
+  "appTitle": "Matriz de Eisenhower",
+  "appSubtitle": "Organiza tareas por urgencia e importancia",
+  "tabs": {
+    "matrix": "Matriz",
+    "tasks": "Tareas"
+  },
+  "filters": {
+    "all": "Todas",
+    "pending": "Pendientes",
+    "completed": "Completadas"
+  },
+  "quadrants": {
+    "urgent_important": {
+      "title": "Hacer primero",
+      "description": "Urgente e importante"
+    },
+    "not_urgent_important": {
+      "title": "Programar",
+      "description": "Importante, no urgente"
+    },
+    "urgent_not_important": {
+      "title": "Delegar",
+      "description": "Urgente, no importante"
+    },
+    "not_urgent_not_important": {
+      "title": "Eliminar",
+      "description": "Ni urgente ni importante"
+    }
+  },
+  "taskList": {
+    "title": "Lista de tareas",
+    "subtitle": "{{total}} tareas • {{completed}} completadas",
+    "emptyAllTitle": "Aún no hay tareas",
+    "emptyFilterTitle": "No hay tareas {{filter}}",
+    "emptySubtitle": "Toca + para crear tu primera tarea"
+  },
+  "quadrantCard": {
+    "completed": "{{completed}}/{{total}} completadas",
+    "emptyTitle": "Aún no hay tareas",
+    "emptySubtitle": "Toca + para agregar una tarea"
+  },
+  "taskForm": {
+    "newTitle": "Nueva tarea",
+    "editTitle": "Editar tarea",
+    "fields": {
+      "title": "Título *",
+      "description": "Descripción",
+      "titlePlaceholder": "¿Qué hay que hacer?",
+      "descriptionPlaceholder": "Añade más detalles (opcional)",
+      "priority": "Prioridad *",
+      "dueDate": "Fecha de vencimiento"
+    },
+    "changeDate": "Cambiar fecha",
+    "addDueDate": "Agregar fecha",
+    "cancel": "Cancelar",
+    "create": "Crear tarea",
+    "update": "Actualizar tarea",
+    "datePickerPlaceholder": "El selector de fecha se agregará en la próxima versión"
+  },
+  "taskCard": {
+    "deleteConfirmTitle": "Eliminar tarea",
+    "deleteConfirmMessage": "¿Seguro que quieres eliminar esta tarea?",
+    "cancel": "Cancelar",
+    "delete": "Eliminar"
+  },
+  "languageNames": {
+    "en": "English",
+    "fr": "Français",
+    "es": "Español",
+    "zh": "中文"
+  },
+  "devScreen": {
+    "openCode": "Abre el código de esta pantalla:",
+    "saveHint": "Cambia cualquier texto, guarda, y la app se actualizará automáticamente.",
+    "helpText": "Toca aquí si tu app no se actualiza automáticamente tras los cambios"
+  }
+}
+
+

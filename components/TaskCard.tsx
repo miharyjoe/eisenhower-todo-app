@@ -13,6 +13,8 @@ import { useTaskContext } from '@/contexts/TaskContext';
 import { QUADRANT_CONFIG } from '@/constants/EisenhowerMatrix';
 import { useColorScheme } from '@/components/useColorScheme';
 import Colors from '@/constants/Colors';
+import { useTranslation } from 'react-i18next';
+import { getDateLocale } from '@/lib/locale';
 
 interface TaskCardProps {
   task: Task;
@@ -28,6 +30,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({
   const { toggleTaskStatus, deleteTask } = useTaskContext();
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme ?? 'light'];
+  const { t, i18n } = useTranslation();
   
   const quadrantConfig = QUADRANT_CONFIG[task.priority];
 
@@ -41,12 +44,12 @@ export const TaskCard: React.FC<TaskCardProps> = ({
 
   const handleDelete = () => {
     Alert.alert(
-      'Delete Task',
-      'Are you sure you want to delete this task?',
+      t('taskCard.deleteConfirmTitle'),
+      t('taskCard.deleteConfirmMessage'),
       [
-        { text: 'Cancel', style: 'cancel' },
+        { text: t('taskCard.cancel'), style: 'cancel' },
         { 
-          text: 'Delete', 
+          text: t('taskCard.delete'), 
           style: 'destructive',
           onPress: () => deleteTask(task.id)
         },
@@ -55,7 +58,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({
   };
 
   const formatDate = (date: Date) => {
-    return date.toLocaleDateString('en-US', {
+    return date.toLocaleDateString(getDateLocale(i18n.language), {
       month: 'short',
       day: 'numeric',
     });

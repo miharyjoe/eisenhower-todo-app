@@ -13,6 +13,7 @@ import { TaskCard } from './TaskCard';
 import { QUADRANT_CONFIG } from '@/constants/EisenhowerMatrix';
 import { useColorScheme } from '@/components/useColorScheme';
 import Colors from '@/constants/Colors';
+import { useTranslation } from 'react-i18next';
 
 interface QuadrantCardProps {
   priority: Priority;
@@ -32,6 +33,7 @@ export const QuadrantCard: React.FC<QuadrantCardProps> = ({
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme ?? 'light'];
   const config = QUADRANT_CONFIG[priority];
+  const { t } = useTranslation();
 
   const completedTasks = tasks.filter(task => task.status === 'completed').length;
   const totalTasks = tasks.length;
@@ -58,10 +60,10 @@ export const QuadrantCard: React.FC<QuadrantCardProps> = ({
             />
             <View>
               <Text style={[styles.title, { color: colors.text }]}>
-                {config.title}
+                {t(`quadrants.${priority}.title`)}
               </Text>
               <Text style={[styles.subtitle, { color: colors.text }]}>
-                {config.description}
+                {t(`quadrants.${priority}.description`)}
               </Text>
             </View>
           </View>
@@ -92,7 +94,7 @@ export const QuadrantCard: React.FC<QuadrantCardProps> = ({
               />
             </View>
             <Text style={[styles.progressText, { color: colors.text }]}>
-              {completedTasks}/{totalTasks} completed
+              {t('quadrantCard.completed', { completed: completedTasks, total: totalTasks })}
             </Text>
           </View>
         )}
@@ -112,10 +114,10 @@ export const QuadrantCard: React.FC<QuadrantCardProps> = ({
               style={styles.emptyIcon}
             />
             <Text style={[styles.emptyText, { color: colors.text }]}>
-              No tasks yet
+              {t('quadrantCard.emptyTitle')}
             </Text>
             <Text style={[styles.emptySubtext, { color: colors.text }]}>
-              Tap + to add a task
+              {t('quadrantCard.emptySubtitle')}
             </Text>
           </View>
         ) : (

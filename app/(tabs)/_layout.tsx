@@ -1,10 +1,13 @@
 import React from 'react';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Tabs } from 'expo-router';
+import { Text } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 import Colors from '@/constants/Colors';
 import { useColorScheme } from '@/components/useColorScheme';
 import { useClientOnlyValue } from '@/components/useClientOnlyValue';
+import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: {
@@ -16,6 +19,23 @@ function TabBarIcon(props: {
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
+  const { t } = useTranslation();
+
+  const HeaderTitle = ({ tx }: { tx: string }) => {
+    return (
+      <Text style={{ fontWeight: '700', fontSize: 17, color: Colors[colorScheme ?? 'light'].text }}>
+        {t(tx)}
+      </Text>
+    );
+  };
+
+  const TabBarLabel = ({ tx, color }: { tx: string; color: string }) => {
+    return (
+      <Text style={{ color, fontSize: 12 }}>
+        {t(tx)}
+      </Text>
+    );
+  };
 
   return (
     <Tabs
@@ -28,9 +48,11 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Matrix',
+          title: t('tabs.matrix'),
           tabBarIcon: ({ color }) => <TabBarIcon name="th" color={color} />,
-          headerTitle: 'Eisenhower Matrix',
+          headerTitle: () => <HeaderTitle tx="tabs.matrix" />,
+          headerRight: () => <LanguageSwitcher />,
+          tabBarLabel: ({ color }) => <TabBarLabel tx="tabs.matrix" color={color} />,
           headerStyle: {
             backgroundColor: Colors[colorScheme ?? 'light'].background,
           },
@@ -42,9 +64,11 @@ export default function TabLayout() {
       <Tabs.Screen
         name="two"
         options={{
-          title: 'Tasks',
+          title: t('tabs.tasks'),
           tabBarIcon: ({ color }) => <TabBarIcon name="list" color={color} />,
-          headerTitle: 'Task List',
+          headerTitle: () => <HeaderTitle tx="taskList.title" />,
+          headerRight: () => <LanguageSwitcher />,
+          tabBarLabel: ({ color }) => <TabBarLabel tx="tabs.tasks" color={color} />,
           headerStyle: {
             backgroundColor: Colors[colorScheme ?? 'light'].background,
           },

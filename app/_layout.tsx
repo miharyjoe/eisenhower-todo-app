@@ -8,6 +8,7 @@ import 'react-native-reanimated';
 
 import { useColorScheme } from '@/components/useColorScheme';
 import { TaskProvider } from '@/contexts/TaskContext';
+import '@/lib/i18n';
 
 export {
   // Catch any errors thrown by the Layout component.

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import {
   StyleSheet,
   ScrollView,
@@ -17,6 +17,7 @@ import { Priority, Task, TaskFormData, TaskStatus } from '@/types';
 import { QUADRANT_CONFIG } from '@/constants/EisenhowerMatrix';
 import { useColorScheme } from '@/components/useColorScheme';
 import Colors from '@/constants/Colors';
+import { useTranslation } from 'react-i18next';
 
 interface TaskSection {
   title: string;
@@ -29,6 +30,7 @@ type FilterType = 'all' | 'pending' | 'completed' | Priority;
 export default function TaskListScreen() {
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme ?? 'light'];
+  const { t } = useTranslation();
   
   const { tasks, addTask, updateTask, loading } = useTaskContext();
   
@@ -97,7 +99,7 @@ export default function TaskListScreen() {
         const priorityTasks = filteredTasks.filter(task => task.priority === priority);
         if (priorityTasks.length > 0) {
           sections.push({
-            title: QUADRANT_CONFIG[priority].title,
+            title: t(`quadrants.${priority}.title`),
             data: priorityTasks.sort((a, b) => {
               // Sort by completion status first, then by creation date
               if (a.status !== b.status) {
@@ -114,9 +116,9 @@ export default function TaskListScreen() {
     } else {
       // Single section for filtered results
       return [{
-        title: filter === 'pending' ? 'Pending Tasks' : 
-               filter === 'completed' ? 'Completed Tasks' : 
-               QUADRANT_CONFIG[filter as Priority].title,
+        title: filter === 'pending' ? t('filters.pending') : 
+               filter === 'completed' ? t('filters.completed') : 
+               t(`quadrants.${filter as Priority}.title`),
         data: filteredTasks.sort((a, b) => {
           if (a.status !== b.status) {
             return a.status === TaskStatus.COMPLETED ? 1 : -1;
@@ -127,15 +129,15 @@ export default function TaskListScreen() {
     }
   };
 
-  const filters: { key: FilterType; label: string; icon: string }[] = [
-    { key: 'all', label: 'All', icon: 'list' },
-    { key: 'pending', label: 'Pending', icon: 'clock-o' },
-    { key: 'completed', label: 'Completed', icon: 'check-circle' },
-    { key: Priority.URGENT_IMPORTANT, label: 'Do First', icon: 'fire' },
-    { key: Priority.NOT_URGENT_IMPORTANT, label: 'Schedule', icon: 'calendar' },
-    { key: Priority.URGENT_NOT_IMPORTANT, label: 'Delegate', icon: 'share' },
-    { key: Priority.NOT_URGENT_NOT_IMPORTANT, label: 'Eliminate', icon: 'trash' },
-  ];
+  const filters: { key: FilterType; label: string; icon: string }[] = useMemo(() => ([
+    { key: 'all', label: t('filters.all'), icon: 'list' },
+    { key: 'pending', label: t('filters.pending'), icon: 'clock-o' },
+    { key: 'completed', label: t('filters.completed'), icon: 'check-circle' },
+    { key: Priority.URGENT_IMPORTANT, label: t(`quadrants.${Priority.URGENT_IMPORTANT}.title`), icon: 'fire' },
+    { key: Priority.NOT_URGENT_IMPORTANT, label: t(`quadrants.${Priority.NOT_URGENT_IMPORTANT}.title`), icon: 'calendar' },
+    { key: Priority.URGENT_NOT_IMPORTANT, label: t(`quadrants.${Priority.URGENT_NOT_IMPORTANT}.title`), icon: 'share' },
+    { key: Priority.NOT_URGENT_NOT_IMPORTANT, label: t(`quadrants.${Priority.NOT_URGENT_NOT_IMPORTANT}.title`), icon: 'trash' },
+  ]), [t]);
 
   const renderSectionHeader = ({ section }: { section: TaskSection }) => {
     const config = section.priority ? QUADRANT_CONFIG[section.priority] : null;
@@ -177,7 +179,7 @@ export default function TaskListScreen() {
     return (
       <View style={[styles.loadingContainer, { backgroundColor: colors.background }]}>
         <Text style={[styles.loadingText, { color: colors.text }]}>
-          Loading your tasks...
+          {t('loading')}
         </Text>
       </View>
     );
@@ -190,10 +192,10 @@ export default function TaskListScreen() {
         <View style={styles.headerTop}>
           <View>
             <Text style={[styles.title, { color: colors.text }]}>
-              Task List
+              {t('taskList.title')}
             </Text>
             <Text style={[styles.subtitle, { color: colors.text }]}>
-              {totalTasks} tasks • {completedTasks} completed
+              {t('taskList.subtitle', { total: totalTasks, completed: completedTasks })}
             </Text>
           </View>
           
@@ -264,10 +266,19 @@ export default function TaskListScreen() {
             style={styles.emptyIcon}
           />
           <Text style={[styles.emptyTitle, { color: colors.text }]}>
-            {filter === 'all' ? 'No tasks yet' : `No ${filter} tasks`}
+            {filter === 'all'
+              ? t('taskList.emptyAllTitle')
+              : t('taskList.emptyFilterTitle', {
+                  filter:
+                    filter === 'pending'
+                      ? t('filters.pending').toLowerCase()
+                      : filter === 'completed'
+                        ? t('filters.completed').toLowerCase()
+                        : t(`quadrants.${filter as Priority}.title`).toLowerCase()
+                })}
           </Text>
           <Text style={[styles.emptySubtitle, { color: colors.text }]}>
-            Tap the + button to create your first task
+            {t('taskList.emptySubtitle')}
           </Text>
         </View>
       ) : (

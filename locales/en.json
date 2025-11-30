@@ -1,0 +1,81 @@
+{
+  "loading": "Loading your tasks...",
+  "appTitle": "Eisenhower Matrix",
+  "appSubtitle": "Organize tasks by urgency and importance",
+  "tabs": {
+    "matrix": "Matrix",
+    "tasks": "Tasks"
+  },
+  "filters": {
+    "all": "All",
+    "pending": "Pending",
+    "completed": "Completed"
+  },
+  "quadrants": {
+    "urgent_important": {
+      "title": "Do First",
+      "description": "Urgent & Important"
+    },
+    "not_urgent_important": {
+      "title": "Schedule",
+      "description": "Important, Not Urgent"
+    },
+    "urgent_not_important": {
+      "title": "Delegate",
+      "description": "Urgent, Not Important"
+    },
+    "not_urgent_not_important": {
+      "title": "Eliminate",
+      "description": "Not Urgent & Not Important"
+    }
+  },
+  "taskList": {
+    "title": "Task List",
+    "subtitle": "{{total}} tasks • {{completed}} completed",
+    "emptyAllTitle": "No tasks yet",
+    "emptyFilterTitle": "No {{filter}} tasks",
+    "emptySubtitle": "Tap the + button to create your first task"
+  },
+  "quadrantCard": {
+    "completed": "{{completed}}/{{total}} completed",
+    "emptyTitle": "No tasks yet",
+    "emptySubtitle": "Tap + to add a task"
+  },
+  "taskForm": {
+    "newTitle": "New Task",
+    "editTitle": "Edit Task",
+    "fields": {
+      "title": "Title *",
+      "description": "Description",
+      "titlePlaceholder": "What needs to be done?",
+      "descriptionPlaceholder": "Add more details (optional)",
+      "priority": "Priority *",
+      "dueDate": "Due Date"
+    },
+    "changeDate": "Change Date",
+    "addDueDate": "Add Due Date",
+    "cancel": "Cancel",
+    "create": "Create Task",
+    "update": "Update Task",
+    "datePickerPlaceholder": "Date picker will be added in next version"
+  },
+  "taskCard": {
+    "deleteConfirmTitle": "Delete Task",
+    "deleteConfirmMessage": "Are you sure you want to delete this task?",
+    "cancel": "Cancel",
+    "delete": "Delete"
+  },
+  "languageNames": {
+    "en": "English",
+    "fr": "Français",
+    "es": "Español",
+    "zh": "中文"
+  },
+  "devScreen": {
+    "openCode": "Open up the code for this screen:",
+    "saveHint": "Change any of the text, save the file, and your app will automatically update.",
+    "helpText": "Tap here if your app doesn't automatically update after making changes"
+  }
+}
+
+
